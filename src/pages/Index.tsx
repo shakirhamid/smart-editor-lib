@@ -5,7 +5,7 @@ import { NotionCalendar } from "@/components/NotionCalendar";
 
 const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [currentView, setCurrentView] = useState<"page" | "calendar">("page");
+  const [currentView, setCurrentView] = useState<"page" | "calendar">("calendar");
 
   return (
     <div className="flex min-h-screen w-full bg-background">
