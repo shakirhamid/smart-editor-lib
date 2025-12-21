@@ -12,6 +12,7 @@ import {
   Star,
   Clock,
   Trash2,
+  Calendar,
 } from "lucide-react";
 
 interface PageItem {
@@ -97,9 +98,16 @@ const SidebarPageItem = ({ page, level = 0, isActive, onClick }: SidebarItemProp
 interface NotionSidebarProps {
   isCollapsed?: boolean;
   onToggle?: () => void;
+  currentView?: "page" | "calendar";
+  onViewChange?: (view: "page" | "calendar") => void;
 }
 
-export const NotionSidebar = ({ isCollapsed = false, onToggle }: NotionSidebarProps) => {
+export const NotionSidebar = ({ 
+  isCollapsed = false, 
+  onToggle,
+  currentView = "page",
+  onViewChange,
+}: NotionSidebarProps) => {
   const [activePage, setActivePage] = useState("1");
 
   if (isCollapsed) {
@@ -154,6 +162,13 @@ export const NotionSidebar = ({ isCollapsed = false, onToggle }: NotionSidebarPr
         <button className="sidebar-item w-full">
           <Inbox className="h-4 w-4 text-muted-foreground" />
           <span>Inbox</span>
+        </button>
+        <button 
+          className={`sidebar-item w-full ${currentView === "calendar" ? "sidebar-item-active" : ""}`}
+          onClick={() => onViewChange?.("calendar")}
+        >
+          <Calendar className="h-4 w-4 text-muted-foreground" />
+          <span>Calendar</span>
         </button>
       </div>
 
